@@ -35,10 +35,20 @@ public class RvAdapter_0 extends RecyclerView.Adapter<RvHolder_0> {
         //Log.d(TAG, "First day of week = "+calendar.get);
 
         for (int i = 1; i <= 42; i++) {
+            int aDay = i - 7;
             if (i <= 7) strings.add(dayNames[i]);
-            else if ((i - 7) >= calendar.get(Calendar.DAY_OF_WEEK) && (i - 7) <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+            /*else if (aDay>=calendar.get(Calendar.DAY_OF_WEEK)){
+
+                if (aDay<=calendar.getActualMaximum(Calendar.DAY_OF_MONTH))  strings.add(String.valueOf(i - 6 - calendar.get(Calendar.DAY_OF_WEEK)));
+                else strings.add(null);
+
+            }else strings.add(null);*/
+
+            else if (aDay >= calendar.get(Calendar.DAY_OF_WEEK) && aDay < calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + calendar.get(Calendar.DAY_OF_WEEK)) {
                 strings.add(String.valueOf(i - 6 - calendar.get(Calendar.DAY_OF_WEEK)));
-            else strings.add(null);
+            } else {
+                strings.add(null);
+            }
         }
     }
 
