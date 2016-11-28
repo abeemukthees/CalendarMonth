@@ -1,6 +1,7 @@
 package com.aumva.calendarmonth.test0;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import java.text.DateFormatSymbols;
@@ -23,14 +24,21 @@ public class RvAdapter_0 extends RecyclerView.Adapter<RvHolder_0> {
 
     public RvAdapter_0() {
         calendar = Calendar.getInstance();
-        //Map<String, Integer> dn = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.US);
-        //Log.d(TAG, dn);
         this.strings = new ArrayList<>();
         calendar.set(Calendar.DAY_OF_MONTH, 1);
+        //Map<String, Integer> dn = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.US);
+        Log.d(TAG, "First day of week = " + calendar.get(Calendar.DAY_OF_WEEK));
+        Log.d(TAG, "1) First day of week = " + calendar.getActualMinimum(Calendar.DAY_OF_WEEK));
+        Log.d(TAG, "2) First day of week = " + calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Log.d(TAG, "3) First day of week = " + calendar.getActualMinimum(Calendar.DAY_OF_WEEK_IN_MONTH));
+        Log.d(TAG, "Max month = " + calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        //Log.d(TAG, "First day of week = "+calendar.get);
 
-        for (int i = calendar.get(Calendar.DAY_OF_MONTH); i <= 42; i++) {
+        for (int i = 1; i <= 42; i++) {
             if (i <= 7) strings.add(dayNames[i]);
-            else strings.add(String.valueOf(i-7));
+            else if ((i - 7) >= calendar.get(Calendar.DAY_OF_WEEK) && (i - 7) <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH))
+                strings.add(String.valueOf(i - 6 - calendar.get(Calendar.DAY_OF_WEEK)));
+            else strings.add(null);
         }
     }
 
