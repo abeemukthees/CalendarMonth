@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.aumva.calendarmonth.test0.TestActivity_0;
+import com.aumva.calendarmonth.test1.TestActivity_1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, TestActivity_0.class));
+                startActivity(new Intent(MainActivity.this, TestActivity_1.class));
             }
         });
     }

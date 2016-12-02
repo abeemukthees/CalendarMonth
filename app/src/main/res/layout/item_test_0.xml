@@ -6,6 +6,19 @@
     android:layout_margin="1dp"
     android:background="#FEFEFE">
 
+
+    <TextView
+        android:id="@+id/text_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp"
+        tools:text="23" />
+
     <TextView
         android:id="@+id/text_day_0"
         style="@style/TextAppearance.AppCompat.Subhead"

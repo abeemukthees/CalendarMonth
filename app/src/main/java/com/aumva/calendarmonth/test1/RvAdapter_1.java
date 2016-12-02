@@ -1,6 +1,7 @@
-package com.aumva.calendarmonth.test0;
+package com.aumva.calendarmonth.test1;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.aumva.calendarmonth.commons.RvHolder;
@@ -15,15 +16,16 @@ import java.util.Locale;
  * Created by Abhimuktheeswarar on 28-11-2016.
  */
 
-public class RvAdapter_0 extends RecyclerView.Adapter<RvHolder> {
+public class RvAdapter_1 extends RecyclerView.Adapter<RvHolder> {
 
 
-    private static final String TAG = RvAdapter_0.class.getSimpleName();
+    private static final String TAG = RvAdapter_1.class.getSimpleName();
     private final List<String> strings;
     private final Calendar calendar;
     String[] dayNames = new DateFormatSymbols(Locale.getDefault()).getShortWeekdays();
+    List<String> numbers;
 
-    public RvAdapter_0(long mills) {
+    public RvAdapter_1(long mills) {
         calendar = Calendar.getInstance();
         calendar.setTimeInMillis(mills);
         this.strings = new ArrayList<>();
@@ -56,9 +58,18 @@ public class RvAdapter_0 extends RecyclerView.Adapter<RvHolder> {
 
     @Override
     public void onBindViewHolder(RvHolder holder, int position) {
+        if (holder.getAdapterPosition() < (calendar.get(Calendar.DAY_OF_WEEK) + 6) || strings.get(holder.getAdapterPosition()) == null)
+            holder.textViews.get(1).setVisibility(View.INVISIBLE);
+        else holder.textViews.get(1).setVisibility(View.VISIBLE);
         holder.textViews.get(0).setText(strings.get(holder.getAdapterPosition()));
-        //holder.textViews.get(1).setText("12");
+        if (numbers != null && numbers.get(holder.getAdapterPosition()) != null)
+            holder.textViews.get(1).setText(numbers.get(holder.getAdapterPosition()));
 
+    }
+
+    public void setNumbers(List<String> numbers) {
+        this.numbers = numbers;
+        notifyDataSetChanged();
     }
 
     @Override
